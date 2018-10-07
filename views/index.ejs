@@ -45,6 +45,12 @@ button:hover {
     background-color: white;
     margin: auto;
 }
+.container2 {
+    padding: 50px;
+    width: 500px;
+    background-color: white;
+    margin: auto;
+}
 
 span.psw {
     float: right;
@@ -130,14 +136,14 @@ span.psw {
 	
 <h2>Register</h2>
 
-<button onclick="document.getElementById('id01').style.display='block'"
+<button onclick="document.getElementById('id02').style.display='block'"
  style="width:auto;">Register</button>
 
-<div id="id01" class="modal">
+<div id="id02" class="modal">
 
 <form action="/action_page.php">
 
-  <div class="container">
+  <div class="container2">
     <label for="email"><b>E-mail</b></label>
     <input type="text" placeholder="Enter E-mail" name="email" required>
 	
@@ -153,8 +159,8 @@ span.psw {
     <button type="submit">Sign-up</button>
   </div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+  <div class="container2" style="background-color:#f1f1f1">
+    <button type="button" onclick="document.getElementById('id02').style.display='none'"
 	 class="cancelbtn">Cancel</button>
 	</div>
 </form>
@@ -163,6 +169,16 @@ span.psw {
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Get the modal
+var modal = document.getElementById('id02');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
