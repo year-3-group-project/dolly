@@ -2,6 +2,19 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBLMwlWDg7MhG5gSlE_TZSVvEORLZPPMCc",
+            authDomain: "dolly-e7b16.firebaseapp.com",
+            databaseURL: "https://dolly-e7b16.firebaseio.com",
+            projectId: "dolly-e7b16",
+            storageBucket: "dolly-e7b16.appspot.com",
+            messagingSenderId: "572619895261"
+        };
+        firebase.initializeApp(config);
+    </script>
 <style>
 {
     box-sizing: border-box;
@@ -43,6 +56,8 @@
 	<a href="" id="vehicles">Vehicles</a>
 	<br>
 	<a href="" id="trips">Trips</a>
+      <br>
+      <a href="" id="" onclick="logout()">Logout</a>
   </div>
   <div class="column middle" style="background-color:#bbb;">
     <h2>Google Map</h2>
@@ -54,6 +69,6 @@
     <h2>Routes</h2>
   </div>
 </div>
-
+<script src="../public/js/bu.js"></script>
 </body>
 </html>

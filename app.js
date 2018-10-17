@@ -3,12 +3,30 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var admin = require('firebase-admin');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 
+
+var serviceAccount = require('./dolly-e7b16-firebase-adminsdk-v6f4l-b15c41058b');
+
+var firebaseAdmin = admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: 'https://dolly-e7b16.firebaseio.com/'
+});
+
+var database = firebaseAdmin.database();
+
 var app = express();
+
+
+// // Sign in existing user
+// database.auth().signInWithEmailAndPassword('test@domain.com', 'qwerty')
+//     .catch(function(err) {
+//         // Handle errors
+//     });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(__dirname + '/public'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
