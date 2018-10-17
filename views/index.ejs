@@ -172,10 +172,10 @@
     <input type="text" placeholder="Enter Username" name="uname" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psw1" required>
 	
 	<label for="psw"><b>Re-enter Password</b></label>
-    <input type="password" placeholder="Re-enter Password" name="psw" required>
+    <input type="password" placeholder="Re-enter Password" name="psw2" required>
         
     <button type="submit">Sign-up</button>
   </div>
@@ -207,6 +207,19 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+
+function check()
+{
+	if (document.getElementById('psw1').value === 
+	document.getElementById('psw2').value)
+	{
+		document.getElementById('message').innerHTML = "match";
+	}
+	else
+	{
+		document.getElementById('message').innerHTML = "no match";
+	}
 }
 </script>
 <script src="../public/js/bu.js"></script>
