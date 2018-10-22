@@ -1,146 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyBLMwlWDg7MhG5gSlE_TZSVvEORLZPPMCc",
-            authDomain: "dolly-e7b16.firebaseapp.com",
-            databaseURL: "https://dolly-e7b16.firebaseio.com",
-            projectId: "dolly-e7b16",
-            storageBucket: "dolly-e7b16.appspot.com",
-            messagingSenderId: "572619895261"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <style>
-      body {font-family: Arial, Helvetica, sans-serif;}
-
-      input[type=text], input[type=password] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-      }
-
-      button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-      }
-
-      button:hover {
-        opacity: 0.8;
-      }
-
-      .cancelbtn {
-        width: auto;
-        padding: 10px 18px;
-        background-color: #f44336;
-      }
-
-      .container {
-        padding: 50px;
-        width: 500px;
-        background-color: white;
-        margin: auto;
-      }
-      .container2 {
-        padding: 50px;
-        width: 500px;
-        background-color: white;
-        margin: auto;
-      }
-
-      span.psw {
-        float: right;
-        padding-top: 16px;
-      }
-      .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        padding-top: 60px;
-      }
-      .modal-content {
-        background-color: #fefefe;
-        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-      }
-      .close {
-        position: absolute;
-        right: 25px;
-        top: 0;
-        color: #000;
-        font-size: 35px;
-        font-weight: bold;
-      }
-
-      .close:hover,
-      .close:focus {
-        color: red;
-        cursor: pointer;
-      }
-
-      /* Change styles for span and cancel button on extra small screens */
-      @media screen and (max-width: 300px) {
-        span.psw {
-          display: block;
-          float: none;
-        }
-        .cancelbtn {
-          width: 100%;
-        }
-      }
-    </style>
-
-  </head>
-
-
+<% include partials/head.ejs %>
 	
 
 <body>
-<h1><%= title %></h1>
+
 <h3 id="google-displayName"></h3>
 <img id="google-pic" src="">
 <p id="google-email"></p>
 <a href="" id="out" onclick="logout()">Logout</a>
 
-<h2>Login</h2>
+
 
 <!--<input type="email" placeholder="Email..." id="email_field" />-->
 <!--<input type="password" placeholder="Password..." id="password_field" />-->
 
 <!--<button onclick="login()">Login to Account</button>-->
 
-<button id="log" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
+<div id="log">
+  <h2>Login</h2>
+  <button id="log" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+</div>
 <div id="id01" class="modal">
 
   <div class="container">
 
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Username" id="email" name="email" required>
+    <input type="text" placeholder="Enter Username" id="email-l" name="email" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" id="password" name="password" required>
+    <input type="password" placeholder="Enter Password" id="password-l" name="password" required>
 
     <button type="submit" onclick="login()">Login</button>
     <label>
@@ -155,36 +42,34 @@
   </div>
 
 </div>
-	
-<h2>Register</h2>
 
-<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Register</button>
+<div id="reg">
+  <h2>Register</h2>
+  <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Register</button>
+</div>
 
 <div id="id02" class="modal">
 
-<form action="/register.php">
+
 
   <div class="container2">
     <label for="email"><b>E-mail</b></label>
-    <input type="text" placeholder="Enter E-mail" name="email" required>
+    <input type="text" placeholder="Enter E-mail" id="email-r" name="email" required>
 	
 	<label for="uname"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw1" required>
-	
-	<label for="psw"><b>Re-enter Password</b></label>
-    <input type="password" placeholder="Re-enter Password" name="psw2" required>
+    <input type="password" placeholder="Enter Password" id="password-r" name="psw1">
         
-    <button type="submit">Sign-up</button>
+    <button type="submit" onclick="register()">Sign up</button>
   </div>
 
   <div class="container2" style="background-color:#f1f1f1">
     <button type="button" onclick="document.getElementById('id02').style.display='none'"
 	 class="cancelbtn">Cancel</button>
 	</div>
-</form>
+
 </div>
 <br>
 
@@ -222,7 +107,7 @@ function check()
 	}
 }
 </script>
-<script src="../public/js/bu.js"></script>
+<script src="../public/js/firebase.js"></script>
 	<a href="dashboard">Dashboard</a>
   </body>
 </html>

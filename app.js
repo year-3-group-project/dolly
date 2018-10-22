@@ -9,24 +9,14 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 
-
 var serviceAccount = require('./dolly-e7b16-firebase-adminsdk-v6f4l-b15c41058b');
-
 var firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: 'https://dolly-e7b16.firebaseio.com/'
 });
-
 var database = firebaseAdmin.database();
 
 var app = express();
-
-
-// // Sign in existing user
-// database.auth().signInWithEmailAndPassword('test@domain.com', 'qwerty')
-//     .catch(function(err) {
-//         // Handle errors
-//     });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

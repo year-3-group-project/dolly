@@ -1,47 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyBLMwlWDg7MhG5gSlE_TZSVvEORLZPPMCc",
-            authDomain: "dolly-e7b16.firebaseapp.com",
-            databaseURL: "https://dolly-e7b16.firebaseio.com",
-            projectId: "dolly-e7b16",
-            storageBucket: "dolly-e7b16.appspot.com",
-            messagingSenderId: "572619895261"
-        };
-        firebase.initializeApp(config);
-    </script>
-<style>
-{
-    box-sizing: border-box;
-}
+<% include partials/head.ejs %>
 
-/* Create three columns that float next to each other */
-.column {
-    float: left;
-    padding: 10px;
-    height: 700px;
-}
-.left, .right {
-  width: 300px;
-}
+<script>
+    /**
+     * Restricted access function
+     *
+     * If user is logged in, it does nothing
+     * if user is not logged in, then it redirects back to home page.
+     */
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            console.log('Stay in this page');
+        } else {
+            console.log('Redirect!!! you cant see this page');
+            window.location = '/';
+        }
+    });
+</script>
 
-.middle {
-  width: 650px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-</style>
-</head>
 <body>
 
 <div class="row">
@@ -69,6 +44,6 @@
     <h2>Routes</h2>
   </div>
 </div>
-<script src="../public/js/bu.js"></script>
+<script src="../public/js/firebase.js"></script>
 </body>
 </html>
