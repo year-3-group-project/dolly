@@ -1,8 +1,43 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html
+{
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+}
+a
+{
+    color: gold;
+}
+a:visited
+{
+    color: firebrick;
 }
 
-a {
-  color: #00B7FF;
+/* Create three columns that float next to each other */
+.column 
+{
+    float: left;
+    padding: 10px;
+    height: 700px;
+}
+.left, .right 
+{
+  width: 300px;
+}
+
+.middle 
+{
+  width: 650px;
+}
+
+/* Clear floats after the columns */
+.row:after 
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+.row
+{
+    font-size: 20px;
 }

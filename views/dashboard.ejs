@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -15,37 +16,11 @@
         };
         firebase.initializeApp(config);
     </script>
-<style>
-{
-    box-sizing: border-box;
-}
-
-/* Create three columns that float next to each other */
-.column {
-    float: left;
-    padding: 10px;
-    height: 700px;
-}
-.left, .right {
-  width: 300px;
-}
-
-.middle {
-  width: 650px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-</style>
 </head>
 <body>
 
 <div class="row">
-  <div class="column left" style="white;">
+  <div class="column left" style="white">
     <h2>Main Menu</h2>
 	<a href="" id="dashboard">Dashboard</a>
 	<br>
