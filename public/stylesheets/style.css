@@ -28,13 +28,13 @@ a:visited
 }
 .left, .right 
 {
-  width: 400px;
+  width: 31%;
 }
 
 .middle 
 {
     text-align: center;
-    width: 650px;
+    width: 34%;
 }
 
 /* Clear floats after the columns */
@@ -64,4 +64,9 @@ a:visited
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+  }
+  iframe
+  {
+      width: 95%;
+      height: 450px;
   }
