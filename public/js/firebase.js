@@ -63,6 +63,7 @@ function register() {
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
         var user = firebase.auth().currentUser;
         console.log('user created!');
+        document.getElementById('id02').setAttribute('style', 'display: none; visibility: hidden');
 
         user.sendEmailVerification();
     }, function(error) {
