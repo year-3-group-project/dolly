@@ -9,6 +9,9 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
+var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
+var accountRouter = require('./routes/account');
 
 var serviceAccount = require('./dolly-e7b16-firebase-adminsdk-v6f4l-b15c41058b');
 var firebaseAdmin = admin.initializeApp({
@@ -34,6 +37,9 @@ app.use('/public', express.static(__dirname + '/public'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/account', accountRouter);
 
 bodyParser = require('body-parser').json();
 app.post('/test', function(req, res) {

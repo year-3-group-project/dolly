@@ -1,41 +1,41 @@
 <% include partials/head.ejs %>
 
-<script>
-    /**
-     * Restricted access function
-     *
-     * If user is logged in, it does nothing
-     * if user is not logged in, then it redirects back to home page.
-     */
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            console.log('Stay in this page');
-        } else {
-            console.log('Redirect!!! you cant see this page');
-            window.location = '/';
-        }
-    });
-</script>
+<!--<script>-->
+    <!--/**-->
+     <!--* Restricted access function-->
+     <!--*-->
+     <!--* If user is logged in, it does nothing-->
+     <!--* if user is not logged in, then it redirects back to home page.-->
+     <!--*/-->
+    <!--firebase.auth().onAuthStateChanged(function (user) {-->
+        <!--if (user) {-->
+            <!--console.log('Stay in this page');-->
+        <!--} else {-->
+            <!--console.log('Redirect!!! you cant see this page');-->
+            <!--window.location = '/';-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-        <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyBLMwlWDg7MhG5gSlE_TZSVvEORLZPPMCc",
-                authDomain: "dolly-e7b16.firebaseapp.com",
-                databaseURL: "https://dolly-e7b16.firebaseio.com",
-                projectId: "dolly-e7b16",
-                storageBucket: "dolly-e7b16.appspot.com",
-                messagingSenderId: "572619895261"
-            };
-            firebase.initializeApp(config);
-        </script>
-    </head>
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+    <!--<head>-->
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
+        <!--<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>-->
+        <!--<script>-->
+            <!--// Initialize Firebase-->
+            <!--var config = {-->
+                <!--apiKey: "AIzaSyBLMwlWDg7MhG5gSlE_TZSVvEORLZPPMCc",-->
+                <!--authDomain: "dolly-e7b16.firebaseapp.com",-->
+                <!--databaseURL: "https://dolly-e7b16.firebaseio.com",-->
+                <!--projectId: "dolly-e7b16",-->
+                <!--storageBucket: "dolly-e7b16.appspot.com",-->
+                <!--messagingSenderId: "572619895261"-->
+            <!--};-->
+            <!--firebase.initializeApp(config);-->
+        <!--</script>-->
+    <!--</head>-->
     <body>
         <div class="hero-image">
             <div class="hero-text">
@@ -81,74 +81,74 @@
             </div>
 
 
-        <script>
-            function initMap() {
+        <!--<script>-->
+            <!--function initMap() {-->
 
-                // Map options
-                var options = {
-                    zoom: 13,
-                    center: {lat: 51.9543, lng: -7.8472}
-                }
+                <!--// Map options-->
+                <!--var options = {-->
+                    <!--zoom: 13,-->
+                    <!--center: {lat: 51.9543, lng: -7.8472}-->
+                <!--}-->
 
-                // New map
-                var map = new google.maps.Map(document.getElementById('map'), options);
+                <!--// New map-->
+                <!--var map = new google.maps.Map(document.getElementById('map'), options);-->
 
-                // Listen for click on map
-                google.maps.event.addListener(map, 'click', function (event) {
-                    // Add marker
-                    addMarker({coords: event.latLng});
-                });
-                
-                // Array of markers
-                var markers = [
-                    {
-                        coords:{lat: 51.941080, lng: -7.823244},
-                        iconImage: 'https://cdn3.iconfinder.com/data/icons/forum-emoticons-2-20x20/20/Auto.png',
-                        content: '<h1>Most Spectacular Beach in the World!</h1>'
-                    },
-                    {
-                        coords:{lat: 51.952757, lng: -7.846762},
-                        content: '<h1>Clock Gate</h1>'
-                    },
-                    {
-                        coords:{lat: 51.947059, lng: -7.842366},
-                        content: '<h1>Green Park</h1>'
-                    }
+                <!--// Listen for click on map-->
+                <!--google.maps.event.addListener(map, 'click', function (event) {-->
+                    <!--// Add marker-->
+                    <!--addMarker({coords: event.latLng});-->
+                <!--});-->
+                <!---->
+                <!--// Array of markers-->
+                <!--var markers = [-->
+                    <!--{-->
+                        <!--coords:{lat: 51.941080, lng: -7.823244},-->
+                        <!--iconImage: 'https://cdn3.iconfinder.com/data/icons/forum-emoticons-2-20x20/20/Auto.png',-->
+                        <!--content: '<h1>Most Spectacular Beach in the World!</h1>'-->
+                    <!--},-->
+                    <!--{-->
+                        <!--coords:{lat: 51.952757, lng: -7.846762},-->
+                        <!--content: '<h1>Clock Gate</h1>'-->
+                    <!--},-->
+                    <!--{-->
+                        <!--coords:{lat: 51.947059, lng: -7.842366},-->
+                        <!--content: '<h1>Green Park</h1>'-->
+                    <!--}-->
 
-                ];
+                <!--];-->
 
-                // Loop through markers
-                for (var i = 0; i < markers.length; i++) {
-                    addMarker(markers[i]);
-                }
+                <!--// Loop through markers-->
+                <!--for (var i = 0; i < markers.length; i++) {-->
+                    <!--addMarker(markers[i]);-->
+                <!--}-->
 
-                // Add marker function
-                function addMarker(property) {
-                    var marker = new google.maps.Marker({
-                            position: property.coords,
-                            map: map,
-                            // icon: property.iconImage
-                        });
+                <!--// Add marker function-->
+                <!--function addMarker(property) {-->
+                    <!--var marker = new google.maps.Marker({-->
+                            <!--position: property.coords,-->
+                            <!--map: map,-->
+                            <!--// icon: property.iconImage-->
+                        <!--});-->
 
-                    // Check for custom icon
-                    if (property.iconImage) {
-                        marker.setIcon(property.iconImage);
-                    }
+                    <!--// Check for custom icon-->
+                    <!--if (property.iconImage) {-->
+                        <!--marker.setIcon(property.iconImage);-->
+                    <!--}-->
 
-                    // Check for content
-                    if (property.content) {
-                        var infoWindow = new google.maps.InfoWindow({
-                            content: property.content
-                        });
+                    <!--// Check for content-->
+                    <!--if (property.content) {-->
+                        <!--var infoWindow = new google.maps.InfoWindow({-->
+                            <!--content: property.content-->
+                        <!--});-->
 
-                        marker.addListener('click', function () {
-                            infoWindow.open(map, marker);
-                        });
-                    }
-                }
-            }
-        </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo7wxdGNUFPvlB2U2Y3xKF11QNxsCIytk&callback=initMap"></script>
-        <script src="../public/js/firebase.js"></script>
+                        <!--marker.addListener('click', function () {-->
+                            <!--infoWindow.open(map, marker);-->
+                        <!--});-->
+                    <!--}-->
+                <!--}-->
+            <!--}-->
+        <!--</script>-->
+        <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo7wxdGNUFPvlB2U2Y3xKF11QNxsCIytk&callback=initMap"></script>-->
+        <!--<script src="../public/js/firebase.js"></script>-->
     </body>
 </html>
