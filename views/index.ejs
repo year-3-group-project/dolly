@@ -1,26 +1,5 @@
 <% include partials/head.ejs %>
 
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-  <!--<head>-->
-    <!--<title><%= title %></title>-->
-    <!--<link rel='stylesheet' href='/stylesheets/styleindex.css' />-->
-    <!--<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>-->
-    <!--<script>-->
-        <!--// Initialize Firebase-->
-        <!--var config = {-->
-            <!--apiKey: "AIzaSyBLMwlWDg7MhG5gSlE_TZSVvEORLZPPMCc",-->
-            <!--authDomain: "dolly-e7b16.firebaseapp.com",-->
-            <!--databaseURL: "https://dolly-e7b16.firebaseio.com",-->
-            <!--projectId: "dolly-e7b16",-->
-            <!--storageBucket: "dolly-e7b16.appspot.com",-->
-            <!--messagingSenderId: "572619895261"-->
-        <!--};-->
-        <!--firebase.initializeApp(config);-->
-    <!--</script>-->
-
-  <!--</head>-->
-
 <script>
     /**
      * Restricted access function
@@ -88,168 +67,159 @@
 
 
 
-
-<!--<input type="email" placeholder="Email..." id="email_field" />-->
-<!--<input type="password" placeholder="Password..." id="password_field" />-->
-
-<!--<button onclick="login()">Login to Account</button>-->
-
-<!--<div id="log">-->
-  <!--<h2>Login</h2>-->
-  <!--<button id="log" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>-->
-<!--</div>-->
-<!--<div id="id01" class="modal">-->
-
-  <!--<div class="container">-->
-
-    <!--<label for="email"><b>Email</b></label>-->
-    <!--<input type="text" placeholder="Enter Username" id="email-l" name="email" required>-->
-
-    <!--<label for="psw"><b>Password</b></label>-->
-    <!--<input type="password" placeholder="Enter Password" id="password-l" name="password" required>-->
-
-    <!--<button type="submit" onclick="login()">Login</button>-->
-    <!--<label>-->
-      <!--<input type="checkbox" checked="checked" name="remember"> Remember me-->
-    <!--</label>-->
-  <!--</div>-->
-
-  <!--<div class="container" style="background-color:#f1f1f1">-->
-     <!--<button type="button" onclick="document.getElementById('id01').style.display='none'"-->
-	 <!--class="cancelbtn">Cancel</button>-->
-    <!--<span class="psw">Forgot <a href="#">password?</a></span>-->
-  <!--</div>-->
-
-<!--</div>-->
-
-<!--<div id="reg">-->
-  <!--<h2>Register</h2>-->
-  <!--<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Register</button>-->
-<!--</div>-->
-
-<!--<div id="id02" class="modal">-->
-
-
-
-  <!--<div class="container2">-->
-    <!--<label for="email"><b>E-mail</b></label>-->
-    <!--<input type="text" placeholder="Enter E-mail" id="email-r" name="email" required>-->
-
-    <!--<label for="psw"><b>Password</b></label>-->
-    <!--<input type="password" placeholder="Enter Password" id="password-r" name="psw1">-->
-        <!---->
-    <!--<button type="submit" onclick="register()">Sign up</button>-->
-  <!--</div>-->
-
-  <!--<div class="container2" style="background-color:#f1f1f1">-->
-    <!--<button type="button" onclick="document.getElementById('id02').style.display='none'"-->
-	 <!--class="cancelbtn">Cancel</button>-->
-	<!--</div>-->
-
-<!--</div>-->
-<!--<br>-->
-
 <script>
-    function initMap() {
-
-        // Map options
-        var options = {
-            zoom: 13,
-            center: {lat: 51.9543, lng: -7.8472}
-        }
-
-        // New map
-        var map = new google.maps.Map(document.getElementById('map'), options);
-
-        // Listen for click on map
-        google.maps.event.addListener(map, 'click', function (event) {
-            // Add marker
-            addMarker({coords: event.latLng});
+    // counter for online cars...
+    var cars_count = 0;
+    // markers array to store all the markers, so that we could remove marker when any car goes offline and its data will be remove from realtime database...
+    var markers = [];
+    var map;
+    function initMap() { // Google Map Initialization...
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: new google.maps.LatLng(51.882940, -8.533050)
+            // mapTypeId: 'terrain'
         });
-
-        // Array of markers
-        var markers = [
-            {
-                coords:{lat: 51.941080, lng: -7.823244},
-                iconImage: 'https://cdn3.iconfinder.com/data/icons/forum-emoticons-2-20x20/20/Auto.png',
-                content: '<h1>Most Spectacular Beach in the World!</h1>'
-            },
-            {
-                coords:{lat: 51.952757, lng: -7.846762},
-                content: '<h1>Clock Gate</h1>'
-            },
-            {
-                coords:{lat: 51.947059, lng: -7.842366},
-                content: '<h1>Green Park</h1>'
-            }
-
-        ];
-
-        // Loop through markers
-        for (var i = 0; i < markers.length; i++) {
-            addMarker(markers[i]);
-        }
-
-        // Add marker function
-        function addMarker(property) {
-            var marker = new google.maps.Marker({
-                position: property.coords,
-                map: map,
-                // icon: property.iconImage
-            });
-
-            // Check for custom icon
-            if (property.iconImage) {
-                marker.setIcon(property.iconImage);
-            }
-
-            // Check for content
-            if (property.content) {
-                var infoWindow = new google.maps.InfoWindow({
-                    content: property.content
-                });
-
-                marker.addListener('click', function () {
-                    infoWindow.open(map, marker);
-                });
-            }
-        }
     }
+    // This Function will create a car icon with angle and add/display that marker on the map
+    function AddCar(data) {
+        var icon = { // car icon
+            path: 'M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805',
+            scale: 0.4,
+            fillColor: "#427af4", //<-- Car Color, you can change it
+            fillOpacity: 1,
+            strokeWeight: 1,
+            anchor: new google.maps.Point(0, 5),
+            rotation: data.val().angle //<-- Car angle
+        };
+        var uluru = { lat: data.val().lat, lng: data.val().lng };
+        var marker = new google.maps.Marker({
+            position: uluru,
+            icon: icon,
+            map: map
+        });
+        markers[data.key] = marker; // add marker in the markers array...
+        document.getElementById("cars").innerHTML = cars_count;
+    }
+    // get firebase database reference...
+    var cars_Ref = firebase.database().ref('/');
+    // this event will be triggered when a new object will be added in the database...
+    cars_Ref.on('child_added', function (data) {
+        cars_count++;
+        AddCar(data);
+    });
+    // this event will be triggered on location change of any car...
+    cars_Ref.on('child_changed', function (data) {
+        markers[data.key].setMap(null);
+        AddCar(data);
+    });
+    // If any car goes offline then this event will get triggered and we'll remove the marker of that car...
+    cars_Ref.on('child_removed', function (data) {
+        markers[data.key].setMap(null);
+        cars_count--;
+        document.getElementById("cars").innerHTML = cars_count;
+    });
 </script>
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
+<!--<script>-->
+    <!--function initMap() {-->
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+        <!--// Map options-->
+        <!--var options = {-->
+            <!--zoom: 13,-->
+            <!--center: {lat: 51.9543, lng: -7.8472}-->
+        <!--}-->
 
-// Get the modal
-var modal = document.getElementById('id02');
+        <!--// New map-->
+        <!--var map = new google.maps.Map(document.getElementById('map'), options);-->
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+        <!--// Listen for click on map-->
+        <!--google.maps.event.addListener(map, 'click', function (event) {-->
+            <!--// Add marker-->
+            <!--addMarker({coords: event.latLng});-->
+        <!--});-->
 
-function check()
-{
-	if (document.getElementById('psw1').value === 
-	document.getElementById('psw2').value)
-	{
-		document.getElementById('message').innerHTML = "match";
-	}
-	else
-	{
-		document.getElementById('message').innerHTML = "no match";
-	}
-}
-</script>
+        <!--// Array of markers-->
+        <!--var markers = [-->
+            <!--{-->
+                <!--coords:{lat: 51.941080, lng: -7.823244},-->
+                <!--iconImage: 'https://cdn3.iconfinder.com/data/icons/forum-emoticons-2-20x20/20/Auto.png',-->
+                <!--content: '<h1>Most Spectacular Beach in the World!</h1>'-->
+            <!--},-->
+            <!--{-->
+                <!--coords:{lat: 51.952757, lng: -7.846762},-->
+                <!--content: '<h1>Clock Gate</h1>'-->
+            <!--},-->
+            <!--{-->
+                <!--coords:{lat: 51.947059, lng: -7.842366},-->
+                <!--content: '<h1>Green Park</h1>'-->
+            <!--}-->
+
+        <!--];-->
+
+        <!--// Loop through markers-->
+        <!--for (var i = 0; i < markers.length; i++) {-->
+            <!--addMarker(markers[i]);-->
+        <!--}-->
+
+        <!--// Add marker function-->
+        <!--function addMarker(property) {-->
+            <!--var marker = new google.maps.Marker({-->
+                <!--position: property.coords,-->
+                <!--map: map,-->
+                <!--// icon: property.iconImage-->
+            <!--});-->
+
+            <!--// Check for custom icon-->
+            <!--if (property.iconImage) {-->
+                <!--marker.setIcon(property.iconImage);-->
+            <!--}-->
+
+            <!--// Check for content-->
+            <!--if (property.content) {-->
+                <!--var infoWindow = new google.maps.InfoWindow({-->
+                    <!--content: property.content-->
+                <!--});-->
+
+                <!--marker.addListener('click', function () {-->
+                    <!--infoWindow.open(map, marker);-->
+                <!--});-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
+<!--<script>-->
+<!--// Get the modal-->
+<!--var modal = document.getElementById('id01');-->
+
+<!--// When the user clicks anywhere outside of the modal, close it-->
+<!--window.onclick = function(event) {-->
+    <!--if (event.target == modal) {-->
+        <!--modal.style.display = "none";-->
+    <!--}-->
+<!--}-->
+
+<!--// Get the modal-->
+<!--var modal = document.getElementById('id02');-->
+
+<!--// When the user clicks anywhere outside of the modal, close it-->
+<!--window.onclick = function(event) {-->
+    <!--if (event.target == modal) {-->
+        <!--modal.style.display = "none";-->
+    <!--}-->
+<!--}-->
+
+<!--function check()-->
+<!--{-->
+	<!--if (document.getElementById('psw1').value === -->
+	<!--document.getElementById('psw2').value)-->
+	<!--{-->
+		<!--document.getElementById('message').innerHTML = "match";-->
+	<!--}-->
+	<!--else-->
+	<!--{-->
+		<!--document.getElementById('message').innerHTML = "no match";-->
+	<!--}-->
+<!--}-->
+<!--</script>-->
 <script src="../public/js/firebase.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo7wxdGNUFPvlB2U2Y3xKF11QNxsCIytk&callback=initMap"></script>
 

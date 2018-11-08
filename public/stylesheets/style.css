@@ -43,6 +43,15 @@ a:visited
     color: black;
 }
 
+#over_map {
+    position: absolute;
+    top: 10px;
+    left: 89%;
+    z-index: 99;
+    background-color: #ccffcc;
+    padding: 10px;
+}
+
 /* Clear floats after the columns */
 .row:after 
 {
