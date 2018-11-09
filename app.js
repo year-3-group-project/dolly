@@ -63,9 +63,10 @@ app.post('/test', bodyParser, function(req, res) {
     }
 
     writeUserData(angle, id, lat, lng);
-    
-    var data = [angle, id, lat, lng];
-    res.status(200).send(data);
+
+    res.status(200).send("Congratulations!");
+    // var data = [angle, id, lat, lng];
+    // res.status(200).send(data);
 });
 
 // catch 404 and forward to error handler
