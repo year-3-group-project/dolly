@@ -25,7 +25,6 @@ var database = firebaseAdmin.database();
 
 var app = express();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -48,12 +47,25 @@ app.use('/vehicles', vehiclesRouter);
 app.use('/trips', tripsRouter);
 
 bodyParser = require('body-parser').json();
-app.post('/test', function(req, res) {
-    //var Keywords = req.body.Keywords;
-    console.log("Yoooooo");
-    console.log(req.headers);
-    console.log(req.body);
-    res.status(200).send("yay");
+app.post('/test', bodyParser, function(req, res) {
+    var angle = req.body.angle;
+    var id = req.body.id;
+    var lat = req.body.lat;
+    var lng = req.body.lng;
+
+    function writeUserData(angle, id, latitude, longitude) {
+        firebaseAdmin.database().ref('/').push({
+            angle: angle,
+            id: id,
+            lat: latitude,
+            lng: longitude
+        });
+    }
+
+    writeUserData(angle, id, lat, lng);
+    
+    var data = [angle, id, lat, lng];
+    res.status(200).send(data);
 });
 
 // catch 404 and forward to error handler
