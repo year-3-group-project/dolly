@@ -54,7 +54,7 @@ app.post('/test', bodyParser, function(req, res) {
     var lng = req.body.lng;
 
     function writeUserData(angle, id, latitude, longitude) {
-        firebaseAdmin.database().ref('/').push({
+        firebaseAdmin.database().ref('/Cars').push({
             angle: angle,
             id: id,
             lat: latitude,
