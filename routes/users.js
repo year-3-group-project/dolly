@@ -8,10 +8,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res) {
     //var Keywords = req.body.Keywords;
-    console.log("Yoooooo");
+    console.log("??");
     console.log(req.headers);
     console.log(req.body);
-    res.status(200).send("yay");
+    res.status(200).send("yay??");
 });
 
 module.exports = router;
