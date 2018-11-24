@@ -57,6 +57,7 @@ function login() {
 }
 
 function register() {
+    var name = document.getElementById("name-r").value;
     var email = document.getElementById("email-r").value;
     var password = document.getElementById("password-r").value;
 
