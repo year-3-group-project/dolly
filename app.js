@@ -12,7 +12,6 @@ var dashboardRouter = require('./routes/dashboard');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var accountRouter = require('./routes/account');
-var driversRouter = require('./routes/drivers');
 var vehiclesRouter = require('./routes/vehicles');
 var tripsRouter = require('./routes/trips');
 
@@ -42,7 +41,6 @@ app.use('/dashboard', dashboardRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/account', accountRouter);
-app.use('/drivers', driversRouter);
 app.use('/vehicles', vehiclesRouter);
 app.use('/trips', tripsRouter);
 
