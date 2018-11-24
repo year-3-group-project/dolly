@@ -1,10 +1,26 @@
 <% include partials/header.ejs %>
 
-    <script src="../public/js/onAuthStateChanged.js"></script>
-
+    <script>
+        /**
+         * Restricted access function
+         *
+         * If user is logged in, it does nothing
+         * if user is not logged in, then it redirects back to home page.
+         */
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                console.log('Stay in this page');
+                window.location = '/';
+            } else {
+                console.log('Redirect!!! you cant see this page');
+                // window.location = '/';
+            }
+        });
+    </script>
     <body>
         <div class="container">
             <h2>Login</h2>
+
             <label for="email"><b>Email</b></label>
             <input type="text" placeholder="Enter Username" id="email-l" name="email" required>
 
@@ -15,8 +31,6 @@
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
-
-
         </div>
         <div id="reg">
             <h2>Register</h2>
