@@ -11,7 +11,7 @@ var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
-var accountRouter = require('./routes/account');
+var profileRouter = require('./routes/profile');
 var vehiclesRouter = require('./routes/vehicles');
 var tripsRouter = require('./routes/trips');
 
@@ -40,7 +40,7 @@ app.use('/users', usersRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/account', accountRouter);
+app.use('/profile', profileRouter);
 app.use('/vehicles', vehiclesRouter);
 app.use('/trips', tripsRouter);
 
@@ -63,11 +63,8 @@ app.post('/test', bodyParser, function(req, res) {
     writeUserData(angle, id, lat, lng);
 
     res.status(200).send("Congratulations!");
-    // var data = [angle, id, lat, lng];
-    // res.status(200).send(data);
 });
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });

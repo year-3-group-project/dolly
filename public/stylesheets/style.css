@@ -15,6 +15,7 @@ body, html
 a
 {
     color: gold;
+    text-decoration: none;
 }
 a:visited
 {
@@ -49,7 +50,9 @@ a:visited
 }
 .left, .right
 {
-    width: 20%;
+    border-radius: 10px;
+    padding: 0 50px;
+    margin-right: 29px;
 }
 
 .middle
@@ -61,6 +64,7 @@ a:visited
 #map {
     height: 615px;  /* The height is 400 pixels */
     width: 100%;  /* The width is the width of the web page */
+    border-radius: 10px;
     color: black;
 }
 
@@ -83,7 +87,7 @@ a:visited
 .row
 {
     font-size: 18px;
-    padding: 20px;
+    padding: 16px;
 }
 .hero-image {
     background-image: linear-gradient(rgba(42, 255, 0), rgba(0, 0, 0));

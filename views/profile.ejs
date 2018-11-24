@@ -1,31 +1,29 @@
 <% include partials/header.ejs %>
 
+    <script>
+        /**
+         * Restricted access function
+         *
+         * If user is logged in, it does nothing
+         * if user is not logged in, then it redirects back to home page.
+         */
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                console.log('Stay in this page');
 
-<script>
-    /**
-     * Restricted access function
-     *
-     * If user is logged in, it does nothing
-     * if user is not logged in, then it redirects back to home page.
-     */
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            console.log('Stay in this page');
+            } else {
+                console.log('Redirect!!! you cant see this page');
+                window.location = '/';
+            }
+        });
+    </script>
+    <div class="row">
+        <% include partials/navigation.ejs %>
+        <div class="column middle">
+            <h3 id="google-displayName"></h3>
+            <img id="google-pic" src="">
+            <p id="google-email"></p>
+        </div>
+    </div>
 
-        } else {
-            console.log('Redirect!!! you cant see this page');
-            window.location = '/';
-        }
-    });
-</script>
-
-
-<h3 id="google-displayName"></h3>
-<img id="google-pic" src="">
-<p id="google-email"></p>
-
-<script src="../public/js/firebase.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo7wxdGNUFPvlB2U2Y3xKF11QNxsCIytk&callback=initMap"></script>
-	<!--<a href="dashboard">Dashboard</a>-->
-  </body>
-</html>
+<% include partials/footer.ejs %>
