@@ -24,11 +24,10 @@ a:visited
 
 .container
 {
-    margin-top: 50px;
-    margin-left: 200px;
     color: black;
+    border-radius: 10px;
+    text-align: left;
     padding: 50px;
-    width: 500px;
     background-color: white;
     display: block;
 }

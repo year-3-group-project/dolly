@@ -13,7 +13,7 @@ var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var profileRouter = require('./routes/profile');
 var vehiclesRouter = require('./routes/vehicles');
-var tripsRouter = require('./routes/trips');
+var transactionsRouter = require('./routes/transactions');
 
 var serviceAccount = require('./dolly-e7b16-firebase-adminsdk-v6f4l-b15c41058b');
 var firebaseAdmin = admin.initializeApp({
@@ -42,7 +42,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/profile', profileRouter);
 app.use('/vehicles', vehiclesRouter);
-app.use('/trips', tripsRouter);
+app.use('/transactions', transactionsRouter);
 
 bodyParser = require('body-parser').json();
 app.post('/test', bodyParser, function(req, res) {

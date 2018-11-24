@@ -1,0 +1,27 @@
+<% include partials/header.ejs %>
+
+    <script>
+        /**
+         * Restricted access function
+         *
+         * If user is logged in, it does nothing
+         * if user is not logged in, then it redirects back to home page.
+         */
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                console.log('Stay in this page');
+
+            } else {
+                console.log('Redirect!!! you cant see this page');
+                window.location = '/';
+            }
+        });
+    </script>
+    <div class="row">
+        <% include partials/navigation.ejs %>
+        <div class="column middle">
+            <div id=""></div>
+        </div>
+    </div>
+
+<% include partials/footer.ejs %>
