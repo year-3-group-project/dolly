@@ -28,7 +28,7 @@ function AddCar(data) {
         map: map
     });
     markers[data.key] = marker; // add marker in the markers array...
-    document.getElementById("cars").innerHTML = cars_count;
+    // document.getElementById("cars").innerHTML = cars_count;
 }
 // get firebase database reference...
 var cars_Ref = firebase.database().ref('/Cars/');

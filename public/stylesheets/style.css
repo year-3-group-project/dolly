@@ -220,3 +220,7 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+.table-tr th {
+    padding: 0;
+}
