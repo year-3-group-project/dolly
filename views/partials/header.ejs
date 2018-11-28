@@ -17,22 +17,22 @@
                 messagingSenderId: "572619895261"
             };
             firebase.initializeApp(config);
-
-            const req = document.getElementById('table');
-
-            const dbRefReq = firebase.database().ref().child('/Cars')
-
-            dbRefReq.on('value', snapshot => {
-                snapshot.forEach(snap => {
-                    const address = snap.child("lat").val();
-                    const name = snap.child("lng").val();
-                    const phone = snap.child("phone").val();
-                    const total = snap.child("total").val();
-
-                    console.log(address);
-                    req.append("<tr><td>" + address + "</td><td>" + name + "</td><td>" + phone + "</td><td>" + total +"</td></tr>");
-                });
-            });
+            //
+            // var req = document.getElementById("table");
+            //
+            // var dbRefReq = firebase.database().ref().child('/Cars')
+            // console.log(dbRefReq);
+            // dbRefReq.on('value', snapshot => {
+            //     snapshot.forEach(snap => {
+            //         var address = snap.child("lat").val();
+            //         var name = snap.child("lng").val();
+            //         var phone = snap.child("phone").val();
+            //         var total = snap.child("total").val();
+            //
+            //         console.log(address + "#############################");
+            //         req.innerHTML = "<tr><td>" + address + "</td><td>" + name + "</td><td>" + phone + "</td><td>" + total +"</td></tr>";
+            //     });
+            // });
 
 
         </script>
@@ -44,5 +44,5 @@
             </div>
         </div>
         <table id="table">
-
+            bu
         </table>
