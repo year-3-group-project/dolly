@@ -25,6 +25,9 @@
             snapshot.forEach(snap => {
                 var lat = snap.child("lat").val();
                 var lng = snap.child("lng").val();
+                var reg = snap.child("reg").val();
+                var charge = snap.child("charge").val();
+                var mileage = snap.child("mileage").val();
 
                 console.log(lat, lng);
 
@@ -37,10 +40,16 @@
                 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
                 var latCell = row.insertCell(0);
                 var lngCell = row.insertCell(1);
+                var regCell = row.insertCell(2);
+                var chargeCell = row.insertCell(3);
+                var mileageCell = row.insertCell(4);
 
                 // Add some text to the new cells:
                 latCell.innerHTML = lat;
                 lngCell.innerHTML = lng;
+                regCell.innerHTML = reg;
+                chargeCell.innerHTML = charge;
+                mileageCell.innerHTML = mileage;
             });
 
         }, function (error) {
@@ -57,6 +66,9 @@
                         <tr>
                             <th>Lat</th>
                             <th>Lng</th>
+                            <th>Reg Num</th>
+                            <th>Charge</th>
+                            <th>Mileage (km)</th>
                         </tr>
                     </table>
                 </div>
