@@ -45,6 +45,7 @@ app.use('/vehicles', vehiclesRouter);
 app.use('/transactions', transactionsRouter);
 
 bodyParser = require('body-parser').json();
+
 app.post('/test', bodyParser, function(req, res) {
     var angle = req.body.angle;
     var id = req.body.id;
@@ -63,6 +64,14 @@ app.post('/test', bodyParser, function(req, res) {
     writeUserData(angle, id, lat, lng);
 
     res.status(200).send("Congratulations!");
+});
+
+/**
+ * Use this function to send notification that a car(arduino) will be stock in traffic.
+ */
+app.post('/delay', bodyParser, function(req, res) {
+
+    res.status(200).send("We are in the Traffic!");
 });
 
 app.use(function(req, res, next) {
