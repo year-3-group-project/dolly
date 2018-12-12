@@ -29,6 +29,10 @@
                 var charge = snap.child("charge").val();
                 var mileage = snap.child("mileage").val();
 
+                var capacity = snap.child("capacity").val();
+                var carType = snap.child("carType").val();
+                var color = snap.child("color").val();
+
                 console.log(lat, lng);
 
                 // Find a <table> element with id="myTable":
@@ -43,6 +47,9 @@
                 var regCell = row.insertCell(2);
                 var chargeCell = row.insertCell(3);
                 var mileageCell = row.insertCell(4);
+                var capacityCell = row.insertCell(5);
+                var carTypeCell = row.insertCell(6);
+                var colorCell = row.insertCell(7);
 
                 // Add some text to the new cells:
                 latCell.innerHTML = lat;
@@ -50,6 +57,9 @@
                 regCell.innerHTML = reg;
                 chargeCell.innerHTML = charge;
                 mileageCell.innerHTML = mileage;
+                capacityCell.innerHTML = capacity;
+                carTypeCell.innerHTML = carType;
+                colorCell.innerHTML = color;
             });
 
         }, function (error) {
@@ -69,6 +79,9 @@
                             <th>Reg Num</th>
                             <th>Charge</th>
                             <th>Mileage (km)</th>
+                            <th>Capacity</th>
+                            <th>Car Type</th>
+                            <th>Color</th>
                         </tr>
                     </table>
                 </div>
